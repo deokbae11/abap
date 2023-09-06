@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<title>ZRB02_GRID_TOOL</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZRB02_GRID_TOOL</h2>
+<h3> Description: 항공사 마스터 정보 프로그램</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Report&nbsp;ZRB00_GRID_TOOL<br />
+*&---------------------------------------------------------------------*<br />
+*&<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+REPORT zrb02_grid_tool MESSAGE-ID zb00.<br />
+<br />
+<br />
+include <a href ="zrb02_grid_tool_top.html">ZRB02_GRID_TOOL_TOP</a>.<br />
+   </div>
+   <div class="codeComment">
+*INCLUDE&nbsp;zrb00_grid_tool_top.&nbsp;&nbsp;&nbsp;&nbsp;"변수&nbsp;선언부<br />
+   </div>
+   <div class="code">
+include <a href ="zrb02_grid_tool_c01.html">ZRB02_GRID_TOOL_C01</a>.<br />
+   </div>
+   <div class="codeComment">
+*INCLUDE&nbsp;zrb00_grid_tool_c01.&nbsp;&nbsp;&nbsp;&nbsp;"Local&nbsp;Class&nbsp;선언<br />
+   </div>
+   <div class="code">
+include <a href ="zrb02_grid_tool_s01.html">ZRB02_GRID_TOOL_S01</a>.<br />
+   </div>
+   <div class="codeComment">
+*INCLUDE&nbsp;zrb00_grid_tool_s01.&nbsp;&nbsp;&nbsp;&nbsp;"selection&nbsp;screen<br />
+   </div>
+   <div class="code">
+include <a href ="zrb02_grid_tool_o01.html">ZRB02_GRID_TOOL_O01</a>.<br />
+   </div>
+   <div class="codeComment">
+*INCLUDE&nbsp;zrb00_grid_tool_o01.&nbsp;&nbsp;&nbsp;&nbsp;"PBO<br />
+   </div>
+   <div class="code">
+include <a href ="zrb02_grid_tool_i01.html">ZRB02_GRID_TOOL_I01</a>.<br />
+   </div>
+   <div class="codeComment">
+*INCLUDE&nbsp;zrb00_grid_tool_i01.&nbsp;&nbsp;&nbsp;&nbsp;"PAI<br />
+   </div>
+   <div class="code">
+include <a href ="zrb02_grid_tool_f01.html">ZRB02_GRID_TOOL_F01</a>.<br />
+   </div>
+   <div class="codeComment">
+*INCLUDE&nbsp;zrb00_grid_tool_f01.&nbsp;&nbsp;&nbsp;&nbsp;"subroutine<br />
+<br />
+<br />
+*--------------------------------------------------------------------*<br />
+*&nbsp;START-OF-SELECTION<br />
+*--------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+START-OF-SELECTION.<br />
+<br />
+&nbsp;&nbsp;PERFORM&nbsp;get_scarr_data.<br />
+&nbsp;&nbsp;PERFORM&nbsp;init_data.<br />
+&nbsp;&nbsp;IF&nbsp;gt_zcarr&nbsp;IS&nbsp;NOT&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CALL&nbsp;SCREEN&nbsp;100.<br />
+&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;s000&nbsp;WITH&nbsp;TEXT-e01&nbsp;DISPLAY&nbsp;LIKE&nbsp;'E'.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*GUI&nbsp;Texts<br />
+*----------------------------------------------------------<br />
+*&nbsp;TITLE_100&nbsp;--&gt;&nbsp;항공사&nbsp;마스터&nbsp;정보&nbsp;프로그램<br />
+<br />
+*Text&nbsp;elements<br />
+*----------------------------------------------------------<br />
+*&nbsp;E01&nbsp;해당하는&nbsp;데이터가&nbsp;없습니다.<br />
+*&nbsp;S01&nbsp;조회조건<br />
+*&nbsp;S02&nbsp;출력옵션<br />
+*&nbsp;T01&nbsp;항공사&nbsp;마스터<br />
+<br />
+<br />
+*Selection&nbsp;texts<br />
+*----------------------------------------------------------<br />
+*&nbsp;SO_CAR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;항공사&nbsp;ID<br />
+<br />
+<br />
+*Messages<br />
+*----------------------------------------------------------<br />
+*<br />
+*&nbsp;Message&nbsp;class:&nbsp;BC405_408<br />
+*010&nbsp;&nbsp;&nbsp;Error&nbsp;creating&nbsp;the&nbsp;container&nbsp;object<br />
+*<br />
+*&nbsp;Message&nbsp;class:&nbsp;ZB00<br />
+*000&nbsp;&nbsp;&nbsp;&&nbsp;&<br />
+*012&nbsp;&nbsp;&nbsp;Error&nbsp;calling&nbsp;the&nbsp;method.<br />
+*<br />
+*&nbsp;Message&nbsp;class:&nbsp;ZB02<br />
+*000&nbsp;&nbsp;&nbsp;&<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2023. Sap Release 754</td>
+   </tr>
+</table>
+</body>
+</html>

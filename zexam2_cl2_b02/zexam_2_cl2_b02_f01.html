@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<title>ZEXAM_2_CL2_B02_F01</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZEXAM_2_CL2_B02_F01</h2>
+<h3> Description: Include ZEXAM_2_CL2_B02_F01</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZEXAM_2_CL2_B02_F01<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM fieldcat.<br />
+   </div>
+   <div class="codeComment">
+*CALL&nbsp;FUNCTION&nbsp;'REUSE_ALV_FIELDCATALOG_MERGE'<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i_program_name&nbsp;&nbsp;&nbsp;=&nbsp;sy-repid<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i_structure_name&nbsp;=&nbsp;'gt_rent'&nbsp;"일일이&nbsp;생성시에는&nbsp;header&nbsp;line이&nbsp;필요가&nbsp;없다<br />
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I_CLIENT_NEVER_DISPLAY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'X'<br />
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I_INCLNAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I_BYPASSING_BUFFER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I_BUFFER_ACTIVE&nbsp;&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;CHANGING<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ct_fieldcat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;it_fieldcat.<br />
+**&nbsp;EXCEPTIONS<br />
+**&nbsp;&nbsp;&nbsp;INCONSISTENT_INTERFACE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;1<br />
+**&nbsp;&nbsp;&nbsp;PROGRAM_ERROR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2<br />
+**&nbsp;&nbsp;&nbsp;OTHERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;3<br />
+*&nbsp;&nbsp;wa_fieldcat-fieldname&nbsp;=&nbsp;'MB_ID'.<br />
+*&nbsp;&nbsp;wa_fieldcat-col_pos&nbsp;=&nbsp;1.<br />
+*&nbsp;&nbsp;wa_fieldcat-seltext_m&nbsp;=&nbsp;'멤버ID'.<br />
+*&nbsp;&nbsp;wa_fieldcat-key&nbsp;=&nbsp;'X'.<br />
+*&nbsp;&nbsp;APPEND&nbsp;wa_fieldcat&nbsp;TO&nbsp;it_fieldcat.<br />
+*&nbsp;&nbsp;CLEAR&nbsp;wa_fieldcat.<br />
+*&nbsp;&nbsp;wa_fieldcat-fieldname&nbsp;=&nbsp;'BOOK_ID'.<br />
+*&nbsp;&nbsp;wa_fieldcat-col_pos&nbsp;=&nbsp;2.<br />
+*&nbsp;&nbsp;wa_fieldcat-seltext_m&nbsp;=&nbsp;'도서번호'.<br />
+*&nbsp;&nbsp;wa_fieldcat-key&nbsp;=&nbsp;'X'.<br />
+*<br />
+*&nbsp;&nbsp;APPEND&nbsp;wa_fieldcat&nbsp;TO&nbsp;it_fieldcat.<br />
+*&nbsp;&nbsp;CLEAR&nbsp;wa_fieldcat.<br />
+*&nbsp;&nbsp;wa_fieldcat-fieldname&nbsp;=&nbsp;'RENT_DT'.<br />
+*&nbsp;&nbsp;wa_fieldcat-col_pos&nbsp;=&nbsp;3.<br />
+*&nbsp;&nbsp;wa_fieldcat-seltext_m&nbsp;=&nbsp;'대여일'.<br />
+*&nbsp;&nbsp;wa_fieldcat-emphasize&nbsp;=&nbsp;'C310'.<br />
+*&nbsp;&nbsp;APPEND&nbsp;wa_fieldcat&nbsp;TO&nbsp;it_fieldcat.<br />
+*&nbsp;&nbsp;CLEAR&nbsp;wa_fieldcat.<br />
+*&nbsp;&nbsp;wa_fieldcat-fieldname&nbsp;=&nbsp;'RETURN_DT'.<br />
+*&nbsp;&nbsp;wa_fieldcat-col_pos&nbsp;=&nbsp;5.<br />
+*&nbsp;&nbsp;wa_fieldcat-seltext_m&nbsp;=&nbsp;'반납예정일'.<br />
+*&nbsp;&nbsp;APPEND&nbsp;wa_fieldcat&nbsp;TO&nbsp;it_fieldcat.<br />
+*&nbsp;&nbsp;CLEAR&nbsp;wa_fieldcat.<br />
+*&nbsp;&nbsp;wa_fieldcat-fieldname&nbsp;=&nbsp;'RETURN_ST'.<br />
+*&nbsp;&nbsp;wa_fieldcat-col_pos&nbsp;=&nbsp;4.<br />
+*&nbsp;&nbsp;wa_fieldcat-seltext_m&nbsp;=&nbsp;'반납여부'.<br />
+*&nbsp;&nbsp;APPEND&nbsp;wa_fieldcat&nbsp;TO&nbsp;it_fieldcat.<br />
+*&nbsp;&nbsp;CLEAR&nbsp;wa_fieldcat.<br />
+*&nbsp;&nbsp;wa_fieldcat-fieldname&nbsp;=&nbsp;'CHANGED_BY'.<br />
+*&nbsp;&nbsp;wa_fieldcat-col_pos&nbsp;=&nbsp;6.<br />
+*&nbsp;&nbsp;wa_fieldcat-seltext_m&nbsp;=&nbsp;'변경자'.<br />
+*&nbsp;&nbsp;APPEND&nbsp;wa_fieldcat&nbsp;TO&nbsp;it_fieldcat.<br />
+*&nbsp;&nbsp;CLEAR&nbsp;wa_fieldcat.<br />
+*&nbsp;&nbsp;wa_fieldcat-fieldname&nbsp;=&nbsp;'CHANGED_ON'.<br />
+*&nbsp;&nbsp;wa_fieldcat-col_pos&nbsp;=&nbsp;7.<br />
+*&nbsp;&nbsp;wa_fieldcat-seltext_m&nbsp;=&nbsp;'변경일자'.<br />
+*&nbsp;&nbsp;APPEND&nbsp;wa_fieldcat&nbsp;TO&nbsp;it_fieldcat.<br />
+*&nbsp;&nbsp;CLEAR&nbsp;wa_fieldcat.<br />
+*&nbsp;&nbsp;wa_fieldcat-fieldname&nbsp;=&nbsp;'CHANGED_TIME'.<br />
+*&nbsp;&nbsp;wa_fieldcat-col_pos&nbsp;=&nbsp;8.<br />
+*&nbsp;&nbsp;wa_fieldcat-seltext_m&nbsp;=&nbsp;'변경시간'.<br />
+*&nbsp;&nbsp;APPEND&nbsp;wa_fieldcat&nbsp;TO&nbsp;it_fieldcat.<br />
+*&nbsp;&nbsp;CLEAR&nbsp;wa_fieldcat.<br />
+*<br />
+*<br />
+*&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;&lt;&gt;&nbsp;0.<br />
+*&nbsp;&nbsp;MESSAGE&nbsp;e000(zb02)&nbsp;WITH&nbsp;'sy-subrc가&nbsp;0이&nbsp;아닙니다.'.<br />
+*&nbsp;&nbsp;ENDIF.<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;CALL&nbsp;FUNCTION&nbsp;'REUSE_ALV_FIELDCATALOG_MERGE'<br />
+&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;I_PROGRAM_NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;sy-repid<br />
+&nbsp;&nbsp;&nbsp;&nbsp;I_INTERNAL_TABNAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'GT_RENT'"인터널테이블을&nbsp;바로&nbsp;반환시&nbsp;헤더&nbsp;생성<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;I_STRUCTURE_NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;I_CLIENT_NEVER_DISPLAY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'X'<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;I_INCLNAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;sy-repid<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;I_BYPASSING_BUFFER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'X'<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;I_BUFFER_ACTIVE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;CHANGING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ct_fieldcat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;it_fieldcat[]<br />
+&nbsp;&nbsp;EXCEPTIONS<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;OTHERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<br />
+&nbsp;IF&nbsp;sy-subrc&nbsp;&lt;&gt;&nbsp;0.<br />
+&nbsp;MESSAGE&nbsp;e000(zb02)&nbsp;WITH&nbsp;'sy-subrc가&nbsp;0이&nbsp;아닙니다.'.<br />
+&nbsp;ENDIF.<br />
+<br />
+ENDFORM.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2023. Sap Release 754</td>
+   </tr>
+</table>
+</body>
+</html>

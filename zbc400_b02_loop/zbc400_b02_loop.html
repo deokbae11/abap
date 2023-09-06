@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<title>ZBC400_B02_LOOP</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZBC400_B02_LOOP</h2>
+<h3> Description: Program ZBC400_B02_LOOP</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Report&nbsp;ZBC400_B02_LOOP<br />
+*&---------------------------------------------------------------------*<br />
+*&<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+REPORT ZBC400_B02_LOOP.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*DATA:&nbsp;gt_connections&nbsp;TYPE&nbsp;BC400_T_CONNECTIONS,<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_connection&nbsp;TYPE&nbsp;LINE&nbsp;OF&nbsp;BC400_T_CONNECTIONS.<br />
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_connection&nbsp;TYPE&nbsp;BC400_S_CONNECTION.<br />
+<br />
+   </div>
+   <div class="code">
+DATA: gs_connection TYPE BC400_S_CONNECTION,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gt_connections&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;BC400_S_CONNECTION&nbsp;WITH&nbsp;NON-UNIQUE&nbsp;KEY&nbsp;carrid&nbsp;connid."스트럭처에는&nbsp;키값이&nbsp;없기&nbsp;때문에&nbsp;et_connection&nbsp;에는&nbsp;키값이&nbsp;있지만<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;이데이터의&nbsp;gt는&nbsp;스트럭처를&nbsp;따와&nbsp;키값이&nbsp;없으므로&nbsp;키를&nbsp;지정해야&nbsp;가능하다<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_connection&nbsp;TYPE&nbsp;BC400_S_CONNECTION.<br />
+<br />
+   </div>
+   <div class="code">
+TRY.<br />
+CALL METHOD cl_bc400_flightmodel=&gt;get_connections<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;EXPORTING<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;iv_carrid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;gs_connection-CARRID&nbsp;"익스포팅은&nbsp;외부에서&nbsp;데이터를&nbsp;전달&nbsp;받아&nbsp;메서드<br />
+*&nbsp;&nbsp;내부에서&nbsp;사용되기&nbsp;위함이다&nbsp;get_connections에서&nbsp;해당&nbsp;메서드를&nbsp;외부에서&nbsp;데이터를&nbsp;받아&nbsp;메서드&nbsp;내부에서<br />
+*&nbsp;사용하기&nbsp;위함이다&nbsp;테이블에&nbsp;데이터를&nbsp;받아오기&nbsp;위함이지&nbsp;하나의&nbsp;값을&nbsp;넣어&nbsp;다른&nbsp;값을&nbsp;얻어오기<br />
+*위함이&nbsp;아니다&nbsp;&nbsp;즉&nbsp;해당&nbsp;메서드에서&nbsp;외부로&nbsp;데이터를&nbsp;내보내지&nbsp;않고&nbsp;외부에서&nbsp;데이터를&nbsp;받아&nbsp;내부처리&nbsp;위함이다<br />
+*&nbsp;EXPORTING&nbsp;섹션은&nbsp;특정한&nbsp;값을&nbsp;가져와서&nbsp;메서드&nbsp;내부에서&nbsp;사용하는&nbsp;경우에&nbsp;사용되며,&nbsp;전체&nbsp;값을&nbsp;받아서&nbsp;할당하는&nbsp;경우에는&nbsp;EXPORTING&nbsp;섹션을&nbsp;사용하지&nbsp;않습니다.<br />
+*bc400타입과&nbsp;같이&nbsp;지정하는&nbsp;이유는&nbsp;메소드의&nbsp;get_connection&nbsp;carrid의&nbsp;타입이&nbsp;bc400의&nbsp;타입을&nbsp;같이&nbsp;지정하기&nbsp;때문에&nbsp;해야한다<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;et_connections&nbsp;=&nbsp;gt_connections<br />
+&nbsp;&nbsp;&nbsp;&nbsp;.<br />
+&nbsp;&nbsp;CATCH&nbsp;cx_bc400_no_data.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE:&nbsp;'NO&nbsp;FOUND&nbsp;DATA'.<br />
+&nbsp;&nbsp;CATCH&nbsp;cx_bc400_no_auth.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE&nbsp;'NO&nbsp;auth.'.<br />
+ENDTRY.<br />
+sort gt_connections by deptime ASCENDING.<br />
+LOOP AT gt_connections into gs_connection.<br />
+&nbsp;&nbsp;WRITE&nbsp;:&nbsp;/&nbsp;gs_connection-carrid,<br />
+&nbsp;&nbsp;gs_connection-CONNID,<br />
+&nbsp;&nbsp;&nbsp;gs_connection-CITYFROM,<br />
+&nbsp;&nbsp;&nbsp;gs_connection-AIRPFROM,<br />
+&nbsp;&nbsp;&nbsp;gs_connection-CITYTO,<br />
+&nbsp;&nbsp;&nbsp;gs_connection-AIRPTO,<br />
+&nbsp;&nbsp;&nbsp;gs_connection-FLTIME,<br />
+&nbsp;&nbsp;&nbsp;gs_connection-DEPTIME,<br />
+&nbsp;&nbsp;&nbsp;gs_connection-ARRTIME.<br />
+ENDLOOP.<br />
+CL_DEMO_OUTPUT=&gt;DISPLAY_DATA( gt_connections ). "화면 확인<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2023. Sap Release 754</td>
+   </tr>
+</table>
+</body>
+</html>

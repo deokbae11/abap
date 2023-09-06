@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<title>ZEXAM_2_CL2_B02_TOP</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZEXAM_2_CL2_B02_TOP</h2>
+<h3> Description: Include ZEXAM_2_CL2_B02_TOP</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZEXAM_2_CL2_B02_TOP<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+TABLES: ztrent_b02.<br />
+TYPE-POOLS : slis.<br />
+DATA gt_rent TYPE  ztrent_b02 OCCURS 0 WITH HEADER LINE."인터널테이블 생성시 occurs 0 사용<br />
+DATA gs_rent TYPE ztrent_b02.<br />
+DATA: it_fieldcat TYPE slis_t_fieldcat_alv,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wa_fieldcat&nbsp;TYPE&nbsp;slis_fieldcat_alv.&nbsp;"&nbsp;해당&nbsp;타입이&nbsp;main,spc를&nbsp;담기&nbsp;때문에&nbsp;선언하여&nbsp;field&nbsp;출력<br />
+DATA: gs_layout TYPE slis_layout_alv.<br />
+DATA  lt_fieldcat  TYPE  slis_t_fieldcat_alv.<br />
+DATA  lt_alv_cat   TYPE TABLE OF lvc_s_fcat.<br />
+DATA  gs_variant type disvariant.<br />
+   </div>
+   <div class="codeComment">
+*DATA&nbsp;:&nbsp;BEGIN&nbsp;OF&nbsp;gt_rent2&nbsp;OCCURS&nbsp;0."인터널테이블&nbsp;생성시<br />
+*DATA&nbsp;:<br />
+*<br />
+**&nbsp;&nbsp;mb_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ztrent_B15-mb_id,<br />
+**&nbsp;&nbsp;book_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;ztrent_B15-book_id,<br />
+**&nbsp;&nbsp;rent_dt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;ztrent_B15-rent_dt,<br />
+**&nbsp;&nbsp;return_dt&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;&nbsp;ztrent_B15-return_dt,<br />
+**&nbsp;&nbsp;return_st&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ztrent_B15-return_st,<br />
+**&nbsp;&nbsp;changed_by&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ztrent_B15-changed_by,<br />
+**&nbsp;&nbsp;changed_on&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;&nbsp;ztrent_B15-changed_on,<br />
+**&nbsp;&nbsp;changed_time&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;ztrent_B15-changed_time.<br />
+*<br />
+*&nbsp;&nbsp;mb_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LIKE&nbsp;ztrent_B15-mb_id,<br />
+*&nbsp;&nbsp;book_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LIKE&nbsp;&nbsp;ztrent_B15-book_id,<br />
+*&nbsp;&nbsp;rent_dt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LIKE&nbsp;&nbsp;ztrent_B15-rent_dt,<br />
+*&nbsp;&nbsp;return_dt&nbsp;&nbsp;&nbsp;&nbsp;LIKE&nbsp;&nbsp;&nbsp;ztrent_B15-return_dt,<br />
+*&nbsp;&nbsp;return_st&nbsp;&nbsp;&nbsp;&nbsp;LIKE&nbsp;ztrent_B15-return_st,<br />
+*&nbsp;&nbsp;changed_by&nbsp;&nbsp;&nbsp;LIKE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ztrent_B15-changed_by,<br />
+*&nbsp;&nbsp;changed_on&nbsp;&nbsp;&nbsp;LIKE&nbsp;&nbsp;&nbsp;ztrent_B15-changed_on,<br />
+*&nbsp;&nbsp;changed_time&nbsp;LIKE&nbsp;&nbsp;&nbsp;&nbsp;ztrent_B15-changed_time.<br />
+*<br />
+*DATA&nbsp;:&nbsp;END&nbsp;OF&nbsp;gt_rent2.<br />
+   </div>
+   <div class="code">
+SELECTION-SCREEN BEGIN OF BLOCK aa WITH FRAME TITLE TEXT-001.<br />
+&nbsp;&nbsp;SELECT-OPTIONS&nbsp;so_id&nbsp;FOR&nbsp;ztrent_b02-mb_id.<br />
+&nbsp;&nbsp;SELECT-OPTIONS&nbsp;so_bi&nbsp;FOR&nbsp;ztrent_b02-book_id.<br />
+SELECTION-SCREEN END OF  BLOCK aa.<br />
+<br />
+INITIALIZATION.<br />
+&nbsp;&nbsp;MOVE&nbsp;:&nbsp;'I'&nbsp;TO&nbsp;so_id-sign,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'GT'&nbsp;TO&nbsp;so_id-option,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'00000002'&nbsp;TO&nbsp;so_id-low.<br />
+&nbsp;&nbsp;APPEND&nbsp;so_id.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2023. Sap Release 754</td>
+   </tr>
+</table>
+</body>
+</html>

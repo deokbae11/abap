@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<title>ZBC405_B02_ALV_C01</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZBC405_B02_ALV_C01</h2>
+<h3> Description: Include ZBC405_B02_ALV_C01</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZBC405_B02_ALV_C01<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+CLASS lcl_handler DEFINITION.<br />
+&nbsp;&nbsp;PUBLIC&nbsp;SECTION.<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;CLASS-DATA:&nbsp;gv_rowid&nbsp;TYPE&nbsp;i.<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;CLASS-METHODS&nbsp;:&nbsp;on_double_click&nbsp;FOR&nbsp;EVENT&nbsp;double_click<br />
+&nbsp;&nbsp;&nbsp;&nbsp;OF&nbsp;cl_gui_alv_grid&nbsp;IMPORTING&nbsp;es_row_no,"이벤트가&nbsp;있는&nbsp;클래스의&nbsp;이름<br />
+&nbsp;&nbsp;&nbsp;&nbsp;on_toolbar&nbsp;FOR&nbsp;EVENT&nbsp;toolbar&nbsp;OF&nbsp;cl_gui_alv_grid&nbsp;IMPORTING&nbsp;e_object,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;on_usercomm&nbsp;FOR&nbsp;EVENT&nbsp;user_command&nbsp;OF&nbsp;cl_gui_alv_grid&nbsp;IMPORTING&nbsp;e_ucomm,"스플릿시에는&nbsp;그리드별로&nbsp;생성&nbsp;command&nbsp;1&nbsp;은&nbsp;그리드1<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;커맨드2에는&nbsp;그리드2&nbsp;방식으로&nbsp;진행&nbsp;그리고&nbsp;perform문에서&nbsp;chaigne&nbsp;e_comm은&nbsp;바뀌기&nbsp;때문에<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;on_usercomm2&nbsp;FOR&nbsp;EVENT&nbsp;user_command&nbsp;OF&nbsp;cl_gui_alv_grid&nbsp;IMPORTING&nbsp;e_ucomm,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;on_usercomm3&nbsp;FOR&nbsp;EVENT&nbsp;user_command&nbsp;OF&nbsp;cl_gui_alv_grid&nbsp;IMPORTING&nbsp;e_ucomm,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;on_button_click&nbsp;FOR&nbsp;EVENT&nbsp;button_click&nbsp;OF&nbsp;cl_gui_alv_grid&nbsp;IMPORTING&nbsp;es_row_no,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;on_context_menu&nbsp;FOR&nbsp;EVENT&nbsp;context_menu_request&nbsp;OF&nbsp;cl_gui_alv_grid&nbsp;IMPORTING&nbsp;e_object.<br />
+ENDCLASS.<br />
+<br />
+<br />
+CLASS lcl_handler IMPLEMENTATION.<br />
+&nbsp;&nbsp;METHOD&nbsp;on_double_click.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;PERFORM&nbsp;on_double_click&nbsp;USING&nbsp;es_row_no.<br />
+&nbsp;&nbsp;ENDMETHOD.<br />
+&nbsp;&nbsp;METHOD&nbsp;on_toolbar.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;PERFORM&nbsp;on_toolbar&nbsp;USING&nbsp;e_object.<br />
+&nbsp;&nbsp;ENDMETHOD.<br />
+&nbsp;&nbsp;METHOD&nbsp;on_usercomm.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;PERFORM&nbsp;on_usercomm&nbsp;CHANGING&nbsp;e_ucomm.<br />
+&nbsp;&nbsp;ENDMETHOD.<br />
+&nbsp;&nbsp;METHOD&nbsp;on_usercomm2.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;PERFORM&nbsp;on_usercomm2&nbsp;CHANGING&nbsp;e_ucomm.<br />
+&nbsp;&nbsp;ENDMETHOD.<br />
+&nbsp;&nbsp;METHOD&nbsp;on_usercomm3.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;PERFORM&nbsp;on_usercomm3&nbsp;CHANGING&nbsp;e_ucomm.<br />
+&nbsp;&nbsp;ENDMETHOD.<br />
+&nbsp;&nbsp;METHOD&nbsp;on_button_click.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;PERFORM&nbsp;on_button_click&nbsp;USING&nbsp;es_row_no.<br />
+&nbsp;&nbsp;ENDMETHOD.<br />
+&nbsp;&nbsp;METHOD&nbsp;on_context_menu.<br />
+&nbsp;&nbsp;&nbsp;PERFORM&nbsp;on_context_menu&nbsp;USING&nbsp;e_object.<br />
+&nbsp;&nbsp;ENDMETHOD.<br />
+ENDCLASS.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2023. Sap Release 754</td>
+   </tr>
+</table>
+</body>
+</html>

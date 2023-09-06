@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<title>ZRB02_GRID_TOOL_TOP</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZRB02_GRID_TOOL_TOP</h2>
+<h3> Description: Include ZRB00_GRID_TOOL_TOP</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZRB00_GRID_TOOL_TOP<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+TABLES zscarrb02.<br />
+TYPES: BEGIN OF gty_type.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;include&nbsp;structure&nbsp;<a&nbsp;href&nbsp;="zscarrb02/dictionary-zscarrb02.html">zscarrb02</a>.<br />
+TYPES:   celltab TYPE lvc_t_styl,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_type.<br />
+DATA :gt_zcarr TYPE TABLE OF gty_type.<br />
+DATA : gs_zcarr   LIKE LINE OF gt_zcarr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gt_celltab&nbsp;TYPE&nbsp;lvc_t_styl,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l_index&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;i.<br />
+DATA: gs_celltab TYPE lvc_s_styl.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**--------------------------------------------------------------------*<br />
+*&nbsp;ALV&nbsp;Class<br />
+*--------------------------------------------------------------------*<br />
+***&nbsp;객체&nbsp;참조&nbsp;변수&nbsp;***************************************************<br />
+   </div>
+   <div class="code">
+DATA : go_cont       TYPE REF TO cl_gui_custom_container.<br />
+DATA : go_dock       TYPE REF TO cl_gui_docking_container.<br />
+DATA : go_split      TYPE REF TO cl_gui_splitter_container.<br />
+DATA : go_gui_cont1  TYPE REF TO cl_gui_container.<br />
+DATA : go_gui_cont2  TYPE REF TO cl_gui_container.<br />
+DATA : go_gui_cont3  TYPE REF TO cl_gui_container.<br />
+<br />
+DATA : go_grid       TYPE REF TO cl_gui_alv_grid.<br />
+DATA : gv_refresh    TYPE c LENGTH 1.<br />
+   </div>
+   <div class="codeComment">
+***&nbsp;Layout&nbsp;***********************************************************<br />
+   </div>
+   <div class="code">
+DATA : gs_variant TYPE disvariant.<br />
+<br />
+DATA : gs_layout TYPE lvc_s_layo,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_color&nbsp;&nbsp;TYPE&nbsp;lvc_s_scol.&nbsp;&nbsp;&nbsp;"Cell&nbsp;Color&nbsp;structure<br />
+<br />
+   </div>
+   <div class="codeComment">
+***&nbsp;Tool&nbsp;(Functions)&nbsp;*************************************************<br />
+   </div>
+   <div class="code">
+DATA : gt_tool     TYPE ui_functions.<br />
+<br />
+   </div>
+   <div class="codeComment">
+***&nbsp;Sort&nbsp;*************************************************************<br />
+   </div>
+   <div class="code">
+DATA : gs_sort     TYPE lvc_s_sort.<br />
+DATA : gt_sort     TYPE lvc_t_sort.<br />
+<br />
+   </div>
+   <div class="codeComment">
+***&nbsp;FIELD&nbsp;CATALOG&nbsp;****************************************************<br />
+   </div>
+   <div class="code">
+DATA : gt_fieldcat TYPE lvc_t_fcat.<br />
+DATA : gs_fieldcat TYPE lvc_s_fcat.<br />
+<br />
+   </div>
+   <div class="codeComment">
+***&nbsp;user_command&nbsp;****************************************************<br />
+   </div>
+   <div class="code">
+DATA : ok_code     TYPE sy-ucomm.<br />
+<br />
+DATA : ls_f4 TYPE lvc_s_f4 ,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lt_f4&nbsp;TYPE&nbsp;lvc_t_f4&nbsp;.<br />
+<br />
+FIELD-SYMBOLS : &lt;fs_01&gt; TYPE lvc_t_modi.<br />
+<br />
+&nbsp;&nbsp;DATA:&nbsp;ls_modified&nbsp;TYPE&nbsp;lvc_s_modi.<br />
+<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;lt_onf4&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;ddshretval&nbsp;WITH&nbsp;HEADER&nbsp;LINE,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ls_onf4&nbsp;TYPE&nbsp;ddshretval.<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;ls_fieldname&nbsp;type&nbsp;help_info-dynprofld.<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;BEGIN&nbsp;OF&nbsp;IT_name&nbsp;OCCURS&nbsp;0,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mark&nbsp;&nbsp;&nbsp;TYPE&nbsp;zscarrb02-mark,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;marknm&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;5,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;it_name.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2023. Sap Release 754</td>
+   </tr>
+</table>
+</body>
+</html>
